@@ -1,9 +1,9 @@
-from PyQt5.QtWidgets import QApplication, QMainWindow, QWidget
-from PyQt5 import uic
-from PyQt5.QtWidgets import QTableWidgetItem
-from sys import argv, executable, exit
-import os
 import sqlite3
+from sys import argv, exit
+
+from PyQt5 import uic
+from PyQt5.QtWidgets import QApplication, QMainWindow, QWidget
+from PyQt5.QtWidgets import QTableWidgetItem
 
 
 class CoffeeShop(QMainWindow):
@@ -17,7 +17,7 @@ class CoffeeShop(QMainWindow):
         self.update_btn.clicked.connect(self.restart)
 
     def restart(self):
-        os.execl(executable, os.path.abspath(__file__), *argv)
+        self.update_result()
 
     def update_result(self):
         cur = self.con.cursor()
