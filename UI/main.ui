@@ -93,18 +93,31 @@
     </column>
    </widget>
    <widget class="QPushButton" name="update_btn">
-    <property name="geometry">
-     <rect>
-      <x>320</x>
-      <y>590</y>
-      <width>75</width>
-      <height>23</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Update</string>
-    </property>
+       <property name="geometry">
+           <rect>
+               <x>270</x>
+               <y>590</y>
+               <width>75</width>
+               <height>23</height>
+           </rect>
+       </property>
+       <property name="text">
+           <string>Update</string>
+       </property>
    </widget>
+      <widget class="QPushButton" name="add_btn">
+          <property name="geometry">
+              <rect>
+                  <x>350</x>
+                  <y>590</y>
+                  <width>75</width>
+                  <height>23</height>
+              </rect>
+          </property>
+          <property name="text">
+              <string>Add</string>
+          </property>
+      </widget>
   </widget>
  </widget>
  <resources/>
