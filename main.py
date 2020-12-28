@@ -8,12 +8,8 @@ from PyQt5.QtWidgets import *
 class CoffeeShop(QMainWindow):
     def __init__(self):
         super().__init__()
-        uic.loadUi('UI/main.ui', self)
-        self.con = sqlite3.connect("data/coffee.sqlite")
-        cur = self.con.cursor()
-        self.result = cur.execute("SELECT * FROM coffee").fetchall()
-        self.edit_window = Editing(self.tableWidget, self.tableWidget.currentRow())
-        self.add_window = Adding()
+        uic.loadUi('main.ui', self)
+        self.con = sqlite3.connect("coffee.sqlite")
         self.modified = {}
         self.titles = None
         self.update_result()
@@ -23,6 +19,8 @@ class CoffeeShop(QMainWindow):
         self.update_result()
 
     def update_result(self):
+        cur = self.con.cursor()
+        self.result = cur.execute("SELECT * FROM coffee").fetchall()
         self.tableWidget.setRowCount(len(self.result))
         self.tableWidget.cellDoubleClicked.connect(self.editing)
         self.add_btn.clicked.connect(self.adding)
@@ -33,17 +31,19 @@ class CoffeeShop(QMainWindow):
                 self.tableWidget.setItem(i, j, QTableWidgetItem(str(val)))
 
     def editing(self):
+        self.edit_window = Editing(self.tableWidget, self.tableWidget.currentRow())
         self.edit_window.show()
 
     def adding(self):
+        self.add_window = Adding()
         self.add_window.show()
 
 
 class Editing(QWidget):
     def __init__(self, table, row):
         super().__init__()
-        uic.loadUi('UI/addEditCoffeeForm.ui', self)
-        self.con = sqlite3.connect("data/coffee.sqlite")
+        uic.loadUi('addEditCoffeeForm.ui', self)
+        self.con = sqlite3.connect("coffee.sqlite")
         self.tableWidget = table
         self.row = row
         self.save_btn.clicked.connect(self.save_results)
@@ -86,8 +86,8 @@ class Editing(QWidget):
 class Adding(QWidget):
     def __init__(self):
         super().__init__()
-        uic.loadUi('UI/addEditCoffeeForm.ui', self)
-        self.con = sqlite3.connect("data/coffee.sqlite")
+        uic.loadUi('addEditCoffeeForm.ui', self)
+        self.con = sqlite3.connect("coffee.sqlite")
         self.save_btn.clicked.connect(self.save_results)
         self.modified = {'sort': self.sort_lbl.text(), 'id': int(self.id_lbl.text()),
                          'roast': int(self.roast_lbl.text()), 'condition': self.ground_lbl.text(),
