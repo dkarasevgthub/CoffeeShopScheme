@@ -1,8 +1,9 @@
 import sqlite3
-from sys import *
+from sys import argv, exit
 
 from PyQt5 import uic
-from PyQt5.QtWidgets import *
+from PyQt5.QtWidgets import QApplication, QMainWindow, QWidget
+from PyQt5.QtWidgets import QTableWidgetItem
 
 
 class CoffeeShop(QMainWindow):
@@ -23,7 +24,6 @@ class CoffeeShop(QMainWindow):
         self.result = cur.execute("SELECT * FROM coffee").fetchall()
         self.tableWidget.setRowCount(len(self.result))
         self.tableWidget.cellDoubleClicked.connect(self.editing)
-        self.add_btn.clicked.connect(self.adding)
         self.tableWidget.setColumnCount(len(self.result[0]))
         self.titles = [description[0] for description in cur.description]
         for i, elem in enumerate(self.result):
@@ -31,12 +31,8 @@ class CoffeeShop(QMainWindow):
                 self.tableWidget.setItem(i, j, QTableWidgetItem(str(val)))
 
     def editing(self):
-        self.edit_window = Editing(self.tableWidget, self.tableWidget.currentRow())
-        self.edit_window.show()
-
-    def adding(self):
-        self.add_window = Adding()
-        self.add_window.show()
+        self.wind = Editing(self.tableWidget, self.tableWidget.currentRow())
+        self.wind.show()
 
 
 class Editing(QWidget):
@@ -54,11 +50,6 @@ class Editing(QWidget):
         self.descrip_lbl.setText(self.tableWidget.item(self.row, 4).text())
         self.price_lbl.setText(self.tableWidget.item(self.row, 5).text())
         self.volume_lbl.setText(self.tableWidget.item(self.row, 6).text())
-        self.modified = {'sort': self.sort_lbl.text(), 'id': int(self.id_lbl.text()),
-                         'roast': int(self.roast_lbl.text()), 'condition': self.ground_lbl.text(),
-                         'description': self.descrip_lbl.text(),
-                         'price': int(self.price_lbl.text()),
-                         'volume': int(self.volume_lbl.text())}
 
     def close_event(self):
         self.close()

@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Кофе</string>
+   <string>Coffee</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QTableWidget" name="tableWidget">
@@ -93,31 +93,31 @@
     </column>
    </widget>
    <widget class="QPushButton" name="update_btn">
-       <property name="geometry">
-           <rect>
-               <x>270</x>
-               <y>590</y>
-               <width>75</width>
-               <height>23</height>
-           </rect>
-       </property>
-       <property name="text">
-           <string>Update</string>
-       </property>
+    <property name="geometry">
+     <rect>
+      <x>290</x>
+      <y>590</y>
+      <width>75</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Update</string>
+    </property>
    </widget>
-      <widget class="QPushButton" name="add_btn">
-          <property name="geometry">
-              <rect>
-                  <x>350</x>
-                  <y>590</y>
-                  <width>75</width>
-                  <height>23</height>
-              </rect>
-          </property>
-          <property name="text">
-              <string>Add</string>
-          </property>
-      </widget>
+   <widget class="QPushButton" name="add_btn">
+    <property name="geometry">
+     <rect>
+      <x>370</x>
+      <y>590</y>
+      <width>75</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Add</string>
+    </property>
+   </widget>
   </widget>
  </widget>
  <resources/>
